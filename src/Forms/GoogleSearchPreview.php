@@ -39,12 +39,18 @@ class GoogleSearchPreview extends LiteralField
     {
         $renderedTitle = $domParser->find('title', 0);
 
-        $body = $domParser->find('body', 0);
-        foreach ($body->find('header,footer,nav') as $header) {
-            $header->outertext = '';
+        $renderedTitle = "";
+        $firstParagraph = "";
+        if($domParser) {
+            $renderedTitle = $domParser->find('title', 0);
+            $body = $domParser->find('body', 0);
+            if($body) {
+                foreach ($body->find('header,footer,nav') as $header) {
+                    $header->outertext = '';
+                }
+            }
+            $firstParagraph = $domParser->find('p', 0);
         }
-
-        $firstParagraph = $domParser->find('p', 0);
 
         Requirements::javascript('vulcandigital/silverstripe-seo:dist/javascript/main.min.js');
         Requirements::css('vulcandigital/silverstripe-seo:dist/css/styles.min.css');
