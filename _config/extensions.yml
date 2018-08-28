@@ -1,3 +1,6 @@
+---
+Name: vulcan_seo
+---
 Page:
   extensions:
     - Vulcan\Seo\Extensions\PageHealthExtension
